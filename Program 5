@@ -1,0 +1,17 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. FACTORIAL.
+       DATA DIVISION.
+           WORKING-STORAGE SECTION.
+           01 WS-N PIC 9(2).
+           01 WS-FACT PIC 9(10) VALUE 1.
+           01 WS-I PIC 9(2) VALUE 1.
+       PROCEDURE DIVISION.
+           ACCEPT WS-N.
+
+           PERFORM UNTIL WS-I > WS-N
+               MULTIPLY WS-I BY WS-FACT
+               ADD 1 TO WS-I
+           END-PERFORM.
+           
+           DISPLAY WS-FACT.
+       STOP RUN.
