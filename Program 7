@@ -1,0 +1,29 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. PRIME.
+       DATA DIVISION.
+           WORKING-STORAGE SECTION.
+           01 WS-SP PIC 9(2) VALUE 4.
+           01 WS-EP PIC 9(2) VALUE 20.
+           01 WS-I PIC 9(2) VALUE 2.
+           01 WS-Q PIC 9(2).
+           01 WS-R PIC 9(2).
+           01 TEMP PIC 9(2).
+       PROCEDURE DIVISION.
+           PERFORM UNTIL WS-SP > WS-EP
+               MOVE 0 TO TEMP
+               MOVE 2 TO WS-I      
+               PERFORM UNTIL WS-I = WS-SP
+                   DIVIDE WS-I INTO WS-SP GIVING WS-Q REMAINDER WS-R
+
+                   IF WS-R EQUAL TO ZERO THEN
+                       MOVE 1 TO TEMP
+                       EXIT PERFORM
+                   END-IF
+                   ADD 1 TO WS-I
+               END-PERFORM
+           IF TEMP EQUAL TO ZERO THEN
+               DISPLAY WS-SP
+           END-IF
+           ADD 1 TO WS-SP
+           END-PERFORM.
+        STOP RUN.
