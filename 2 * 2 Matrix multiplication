@@ -1,0 +1,74 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. HELLO.
+       DATA DIVISION.
+           WORKING-STORAGE SECTION.
+           01 WS-TABLE1.
+               05 WS-ROW1 OCCURS 2 TIMES.
+                   10 WS-COLUMN1 PIC 9(2) OCCURS 2 TIMES.
+
+           01 WS-TABLE2.
+               05 WS-ROW2 OCCURS 2 TIMES.
+                   10 WS-COLUMN2 PIC 9(2) OCCURS 2 TIMES.
+
+           01 WS-TABLE3.
+               05 WS-ROW3 OCCURS 2 TIMES.
+                   10 WS-COLUMN3 PIC 9(4) OCCURS 2 TIMES.
+
+           01 WS-I PIC 9(1) VALUE 1.
+           01 WS-J PIC 9(1) VALUE 1.
+           01 WS-K PIC 9(1) VALUE 1.
+           01 WS-L PIC 9(1) VALUE 2.
+           01 WS-M PIC 9(1) VALUE 3.
+       PROCEDURE DIVISION.
+           
+           PERFORM UNTIL WS-I > 2
+               MOVE 1 TO WS-J
+               PERFORM UNTIL WS-J > 2
+                   ACCEPT WS-COLUMN1(WS-I,WS-J)
+                   ADD 1 TO WS-J
+               END-PERFORM
+               ADD 1 TO WS-I
+           END-PERFORM.
+
+           MOVE 1 TO WS-I.
+
+           PERFORM UNTIL WS-I > 2
+               MOVE 1 TO WS-J
+               PERFORM UNTIL WS-J > 2
+                   ACCEPT WS-COLUMN2(WS-I,WS-J)
+                   ADD 1 TO WS-J
+               END-PERFORM
+               ADD 1 TO WS-I
+           END-PERFORM.
+
+           MOVE 1 TO WS-I.
+
+           PERFORM UNTIL WS-I > 2
+               MOVE 1 TO WS-J
+               MOVE 1 TO WS-K
+               MOVE 2 TO WS-L
+               MOVE 3 TO WS-M
+               PERFORM UNTIL WS-J > 2
+                   COMPUTE WS-COLUMN3(WS-J,WS-I) = 
+                   ((WS-COLUMN1(WS-J,WS-K)) * 
+                   (WS-COLUMN2(WS-K,WS-I)) + 
+                   (WS-COLUMN1(WS-J,WS-L)) * 
+                   (WS-COLUMN2(WS-L,WS-I)))
+                   ADD 1 TO WS-J
+               END-PERFORM
+               ADD 1 TO WS-I
+           END-PERFORM.
+
+           MOVE 1 TO WS-I.
+           
+           PERFORM UNTIL WS-I > 2
+               MOVE 1 TO WS-J
+               PERFORM UNTIL WS-J > 2
+                   DISPLAY " "WS-COLUMN3(WS-I,WS-J) WITH NO ADVANCING
+                   ADD 1 TO WS-J
+               END-PERFORM
+               DISPLAY "      "
+               ADD 1 TO WS-I
+           END-PERFORM.
+
+       STOP RUN.
