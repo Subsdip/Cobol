@@ -1,0 +1,34 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. HELLO.
+       DATA DIVISION.
+           WORKING-STORAGE SECTION.
+           01 WS-TABLE.
+               05 WS-N PIC 9(1) OCCURS 5 TIMES.
+           01 WS-B PIC 9(2) VALUE 10.
+           01 WS-Q PIC 9(2).
+           01 WS-R PIC 9(2).
+           01 WS-I PIC 9(1) VALUE 1.
+       PROCEDURE DIVISION.
+
+           PERFORM UNTIL WS-B = 0
+               DIVIDE 2 INTO WS-B GIVING WS-Q REMAINDER WS-R
+
+               IF WS-R EQUAL TO ZERO THEN
+                   MOVE 0 TO WS-N(WS-I)
+               ELSE
+                   MOVE 1 TO WS-N(WS-I)
+               END-IF
+
+               MOVE WS-Q TO WS-B
+
+               ADD 1 TO WS-I
+           END-PERFORM.
+
+           MOVE 4 TO WS-I.
+           
+           PERFORM UNTIL WS-I = 0
+               DISPLAY WS-N(WS-I) WITH NO ADVANCING
+               SUBTRACT 1 FROM WS-I
+           END-PERFORM.
+
+       STOP RUN.
