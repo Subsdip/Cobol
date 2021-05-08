@@ -1,0 +1,13 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. HELLO.
+       DATA DIVISION.
+           WORKING-STORAGE SECTION.
+           01 WS-NAME PIC X(10).
+           01 TEMP PIC 9(2) VALUE 0.
+       PROCEDURE DIVISION.
+           ACCEPT WS-NAME.
+
+           INSPECT WS-NAME TALLYING TEMP FOR ALL "A","E","I","O","U",
+           "a","e","i","o","u".
+           DISPLAY TEMP.
+       STOP RUN.
